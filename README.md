@@ -54,7 +54,7 @@ function clear(key:String):Promise<Void>;
 function getMultiple(keys:Array<String>):Promise<Object>;
 function setMultiple(data:Object):Promise<Void>;
 function clearMultiple(keys:Array<String>):Promise<Void>;
-function getAll():Promise<Array<String>>;
+function getAll():Promise<Object>;
 function clearAll():Promise<Void>;
 ```
   
