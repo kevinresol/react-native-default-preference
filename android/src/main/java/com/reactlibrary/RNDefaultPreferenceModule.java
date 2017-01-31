@@ -31,24 +31,24 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   public String getName() {
     return "RNDefaultPreference";
   }
-  
+
   @ReactMethod
   public void get(String key, Promise promise) {
     promise.resolve(getPreferences().getString(key, null));
   }
-  
+
   @ReactMethod
   public void set(String key, String value, Promise promise) {
     getEditor().putString(key, value).commit();
     promise.resolve(null);
   }
-  
+
   @ReactMethod
   public void clear(String key, Promise promise) {
-    getEditor().remove(key);
+    getEditor().remove(key).commit();
     promise.resolve(null);
   }
-  
+
   @ReactMethod
   public void getMultiple(ReadableArray keys, Promise promise) {
     WritableArray result = Arguments.createArray();
@@ -57,7 +57,7 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     }
     promise.resolve(result);
   }
-  
+
   @ReactMethod
   public void setMultiple(ReadableMap data, Promise promise) {
     SharedPreferences.Editor editor = getEditor();
@@ -68,16 +68,16 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     }
     promise.resolve(null);
   }
-  
+
   @ReactMethod
   public void clearMultiple(ReadableArray keys, Promise promise) {
     SharedPreferences.Editor editor = getEditor();
     for(int i = 0; i < keys.size(); i++) {
-      editor.remove(keys.getString(i));
+      editor.remove(keys.getString(i)).commit();
     }
     promise.resolve(null);
   }
-  
+
   @ReactMethod
   public void getAll(Promise promise) {
     WritableMap result = Arguments.createMap();
@@ -87,13 +87,13 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     }
     promise.resolve(result);
   }
-  
+
   @ReactMethod
   public void clearAll(Promise promise) {
     SharedPreferences.Editor editor = getEditor();
     Map<String, ?> allEntries = getPreferences().getAll();
     for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-      editor.remove(entry.getKey());
+      editor.remove(entry.getKey()).commit();
     }
     promise.resolve(null);
   }
