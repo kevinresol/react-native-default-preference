@@ -73,8 +73,9 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   public void clearMultiple(ReadableArray keys, Promise promise) {
     SharedPreferences.Editor editor = getEditor();
     for(int i = 0; i < keys.size(); i++) {
-      editor.remove(keys.getString(i)).commit();
+      editor.remove(keys.getString(i));
     }
+    editor.commit();
     promise.resolve(null);
   }
 
@@ -93,8 +94,9 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     SharedPreferences.Editor editor = getEditor();
     Map<String, ?> allEntries = getPreferences().getAll();
     for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-      editor.remove(entry.getKey()).commit();
+      editor.remove(entry.getKey());
     }
+    editor.commit();
     promise.resolve(null);
   }
 
