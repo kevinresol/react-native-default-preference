@@ -1,8 +1,8 @@
 
 {
   "name": "react-native-default-preference",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Use SharedPreference (Android) and UserDefaults (iOS) with React Native over a unified interface",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,8 @@
     "NSUserDefaults", "user defaults",
     "SharedPreferences", "shared preferences"
   ],
-  "author": "",
-  "license": "",
+  "author": "kevinresol",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.29.0"
 
