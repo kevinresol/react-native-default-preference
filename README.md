@@ -6,7 +6,7 @@ All data are stored as String, in case more complex data structure is needed, se
 
 ## Getting started
 
-`$ npm install react-native-default-preference --save`
+`$ npm install --save react-native-default-preference`
 
 ### Mostly automatic installation
 
