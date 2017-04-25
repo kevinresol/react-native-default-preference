@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.description    = package['description']
   s.license        = package['license']
   s.author         = package['author']
+  s.homepage       = package['homepage']
   s.source         = { :git => 'https://github.com/kevinresol/react-native-default-preference.git' }
 
   s.requires_arc   = true
