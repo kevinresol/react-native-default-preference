@@ -16,6 +16,6 @@
   "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.29.0"
-
-  }
+  },
+  "homepage": "https://github.com/kevinresol/react-native-default-preference#readme"
 }
