@@ -56,5 +56,18 @@ function setMultiple(data:Object):Promise<Void>;
 function clearMultiple(keys:Array<String>):Promise<Void>;
 function getAll():Promise<Object>;
 function clearAll():Promise<Void>;
+function setPreferencesName(name:String):Void; \\ ANDROID ONLY
 ```
-  
+
+## Cordova Native Storage Compatibility
+This module is compatible with cordova-plugin-native-storage.
+
+### Android
+You need to use the same SharedPreference as in the cordova plugin, to do so add
+the following line:
+
+```js
+import { Platform } from 'react-native';
+// ...
+if (Platform.OS === 'android') DefaultPreference.setPreferencesName('NativeStorage');
+```
