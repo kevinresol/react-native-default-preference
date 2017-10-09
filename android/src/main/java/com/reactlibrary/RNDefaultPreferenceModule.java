@@ -101,7 +101,7 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   }
 
   private SharedPreferences getPreferences() {
-    return getReactApplicationContext().getSharedPreferences("react-native", Context.MODE_PRIVATE);
+    return getReactApplicationContext().getSharedPreferences("NativeStorage", Context.MODE_PRIVATE);
   }
   private SharedPreferences.Editor getEditor() {
     return getPreferences().edit();
