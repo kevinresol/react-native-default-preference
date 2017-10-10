@@ -56,7 +56,8 @@ function setMultiple(data:Object):Promise<Void>;
 function clearMultiple(keys:Array<String>):Promise<Void>;
 function getAll():Promise<Object>;
 function clearAll():Promise<Void>;
-function setPreferencesName(name:String):Void; \\ ANDROID ONLY
+function setName(name:String):Promise<Void>; \\ ANDROID ONLY
+function getName():Promise<String>; \\ ANDROID ONLY
 ```
 
 ## Cordova Native Storage Compatibility

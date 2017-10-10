@@ -102,8 +102,14 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setPreferencesName(String preferencesName) {
+  public void setName(String preferencesName, Promise promise) {
     this.preferencesName = preferencesName;
+    promise.resolve(null);
+  }
+
+  @ReactMethod
+  public void getName(Promise promise) {
+    promise.resolve(preferencesName);
   }
 
   private SharedPreferences getPreferences() {
