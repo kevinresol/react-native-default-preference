@@ -56,8 +56,8 @@ function setMultiple(data:Object):Promise<Void>;
 function clearMultiple(keys:Array<String>):Promise<Void>;
 function getAll():Promise<Object>;
 function clearAll():Promise<Void>;
-function setName(name:String):Promise<Void>; \\ ANDROID ONLY
-function getName():Promise<String>; \\ ANDROID ONLY
+function setName(name:String):Promise<Void>;
+function getName():Promise<String>;
 ```
 
 ## Cordova Native Storage Compatibility
@@ -72,3 +72,7 @@ import { Platform } from 'react-native';
 // ...
 if (Platform.OS === 'android') DefaultPreference.setPreferencesName('NativeStorage');
 ```
+
+### iOS
+You don't need to change the name, as cordova-plugin-native-storage uses the default
+value.
