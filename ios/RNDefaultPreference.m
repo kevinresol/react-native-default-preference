@@ -38,14 +38,14 @@ RCT_EXPORT_METHOD(getName:(RCTPromiseResolveBlock)resolve
 
 RCT_EXPORT_METHOD(get:(NSString *)key
                   resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
     resolve([[self getDefaultUser] stringForKey:key]);
 }
 
 RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
                   resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
     [[self getDefaultUser] setObject:value forKey:key];
     resolve([NSNull null]);
