@@ -19,6 +19,7 @@ import com.facebook.react.bridge.WritableMap;
 import java.util.Map;
 
 public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
+  private String preferencesName = "react-native";
 
   private final ReactApplicationContext reactContext;
 
@@ -100,8 +101,19 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     promise.resolve(null);
   }
 
+  @ReactMethod
+  public void setName(String preferencesName, Promise promise) {
+    this.preferencesName = preferencesName;
+    promise.resolve(null);
+  }
+
+  @ReactMethod
+  public void getName(Promise promise) {
+    promise.resolve(preferencesName);
+  }
+
   private SharedPreferences getPreferences() {
-    return getReactApplicationContext().getSharedPreferences("react-native", Context.MODE_PRIVATE);
+    return getReactApplicationContext().getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
   }
   private SharedPreferences.Editor getEditor() {
     return getPreferences().edit();

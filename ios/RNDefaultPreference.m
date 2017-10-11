@@ -3,85 +3,111 @@
 
 @implementation RNDefaultPreference
 
+NSString* defaultSuiteName = nil;
+
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_get_main_queue();
 }
+
+- (NSUserDefaults *) getDefaultUser{
+    if(defaultSuiteName == nil){
+        NSLog(@"No prefer suite for userDefaults. Using standard one.");
+        return [NSUserDefaults standardUserDefaults];
+    } else {
+        NSLog(@"Using %@ suite for userDefaults", defaultSuiteName);
+        return [[NSUserDefaults alloc] initWithSuiteName:defaultSuiteName];
+    }
+}
+
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(get:(NSString *)key
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(setName:(NSString *)name
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
-    resolve([[NSUserDefaults standardUserDefaults] stringForKey:key]);
+    defaultSuiteName = name;
+    resolve([NSNull null]);
+}
+
+RCT_EXPORT_METHOD(getName:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    resolve(defaultSuiteName);
+}
+
+RCT_EXPORT_METHOD(get:(NSString *)key
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    resolve([[self getDefaultUser] stringForKey:key]);
 }
 
 RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
-    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+    [[self getDefaultUser] setObject:value forKey:key];
     resolve([NSNull null]);
 }
 
 RCT_EXPORT_METHOD(clear:(NSString *)key
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [[self getDefaultUser] removeObjectForKey:key];
     resolve([NSNull null]);
 }
 
 RCT_EXPORT_METHOD(getMultiple:(NSArray *)keys
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
     NSMutableArray *result = [NSMutableArray array];
     for(NSString *key in keys) {
-        NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+        NSString *value = [[self getDefaultUser] stringForKey:key];
         [result addObject: value == nil ? [NSNull null] : value];
     }
     resolve(result);
 }
 
 RCT_EXPORT_METHOD(setMultiple:(NSDictionary *)data
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
     for (id key in data) {
-        [[NSUserDefaults standardUserDefaults] setObject:[data objectForKey:key] forKey:key];
+        [[self getDefaultUser] setObject:[data objectForKey:key] forKey:key];
     }
     resolve([NSNull null]);
 }
 
 RCT_EXPORT_METHOD(clearMultiple:(NSArray *)keys
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
     for(NSString *key in keys) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        [[self getDefaultUser] removeObjectForKey:key];
     }
     resolve([NSNull null]);
 }
 
 RCT_EXPORT_METHOD(getAll:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  reject:(__unused RCTPromiseRejectBlock)reject)
 {
-    NSArray *keys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
+    NSArray *keys = [[[self getDefaultUser] dictionaryRepresentation] allKeys];
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for(NSString *key in keys) {
-        NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+        NSString *value = [[self getDefaultUser] stringForKey:key];
         result[key] = value == nil ? [NSNull null] : value;
     }
     resolve(result);
 }
 
-RCT_EXPORT_METHOD(clearAll:resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(clearAll:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 {
-    NSArray *keys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
-    [self clearMultiple:keys resolver:resolve rejecter:reject];
+    NSArray *keys = [[[self getDefaultUser] dictionaryRepresentation] allKeys];
+    [self clearMultiple:keys resolve:resolve reject:reject];
 }
 
 @end
-  
