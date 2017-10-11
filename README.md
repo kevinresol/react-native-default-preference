@@ -56,8 +56,10 @@ function setMultiple(data:Object):Promise<Void>;
 function clearMultiple(keys:Array<String>):Promise<Void>;
 function getAll():Promise<Object>;
 function clearAll():Promise<Void>;
-function setName(name:String):Promise<Void>;
+
+/** Gets and sets the current preferences file name (android) or user default suite name (ios) **/
 function getName():Promise<String>;
+function setName(name:String):Promise<Void>;
 ```
 
 ## Cordova Native Storage Compatibility
@@ -70,7 +72,7 @@ the following line:
 ```js
 import { Platform } from 'react-native';
 // ...
-if (Platform.OS === 'android') DefaultPreference.setPreferencesName('NativeStorage');
+if (Platform.OS === 'android') DefaultPreference.setName('NativeStorage');
 ```
 
 ### iOS
