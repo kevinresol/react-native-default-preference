@@ -4,6 +4,11 @@
 Use `SharedPreference` (Android) and `UserDefaults` (iOS) with React Native over a unified interface.
 All data are stored as String, in case more complex data structure is needed, serialize it (e.g. JSON)
 
+## React Native Version Compatibility
+
+Use >= 1.3.0 for RN >= 0.47;
+Use <= 1.2.1 for RN <= 0.46;
+
 ## Getting started
 
 `$ npm install react-native-default-preference --save`
