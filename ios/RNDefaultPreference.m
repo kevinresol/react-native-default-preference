@@ -20,6 +20,18 @@ NSString* defaultSuiteName = nil;
     }
 }
 
+- (NSString *)getStringOrArray:(NSString *)key {
+    NSString *value = [[self getDefaultUser] stringForKey:key];
+    if (nil == value) {
+        NSError* error = nil;
+        NSArray *array = [[self getDefaultUser] arrayForKey:key];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:0 error:&error];
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    } else {
+        return value;
+    }
+}
+
 RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(setName:(NSString *)name
@@ -40,7 +52,7 @@ RCT_EXPORT_METHOD(get:(NSString *)key
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
 {
-    resolve([[self getDefaultUser] stringForKey:key]);
+    resolve([self getStringOrArray:key]);
 }
 
 RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
@@ -65,7 +77,7 @@ RCT_EXPORT_METHOD(getMultiple:(NSArray *)keys
 {
     NSMutableArray *result = [NSMutableArray array];
     for(NSString *key in keys) {
-        NSString *value = [[self getDefaultUser] stringForKey:key];
+        NSString *value = [self getStringOrArray:key];
         [result addObject: value == nil ? [NSNull null] : value];
     }
     resolve(result);
@@ -97,7 +109,7 @@ RCT_EXPORT_METHOD(getAll:(RCTPromiseResolveBlock)resolve
     NSArray *keys = [[[self getDefaultUser] dictionaryRepresentation] allKeys];
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for(NSString *key in keys) {
-        NSString *value = [[self getDefaultUser] stringForKey:key];
+        NSString *value = [self getStringOrArray:key];
         result[key] = value == nil ? [NSNull null] : value;
     }
     resolve(result);
