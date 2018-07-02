@@ -47,8 +47,11 @@ RCT_EXPORT_METHOD(getObject: (NSString *) key
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
 {
+    NSError * err;
     NSDictionary *result = [[self getDefaultUser] dictionaryForKey:key];
-    resolve(result);
+    NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:result options:0 error:&err];
+    NSString * myString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
+    resolve(myString);
 }
 
 RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value

@@ -60,6 +60,12 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void getObject(String key, Promise promise) {
+      String output = JSON.stringfy(getPreferences().getObject(key, null));
+      promise.resolve(output);
+  }
+
+  @ReactMethod
   public void setMultiple(ReadableMap data, Promise promise) {
     SharedPreferences.Editor editor = getEditor();
     ReadableMapKeySetIterator iter = data.keySetIterator();

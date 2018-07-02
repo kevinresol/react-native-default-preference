@@ -49,6 +49,7 @@ DefaultPreference.set('my key', 'my value').then(function() {console.log('done')
 
 ```haxe
 function get(key:String):Promise<String>;
+function getObject(key:String):Promise<String>;
 function set(key:String, value:String):Promise<Void>;
 function clear(key:String):Promise<Void>;
 function getMultiple(keys:Array<String>):Promise<Array<String>>;
