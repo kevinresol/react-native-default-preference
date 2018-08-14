@@ -1,5 +1,11 @@
 
+
+**Looking for maintainer**
+
+I have actually never used this library after creating it, because the project originally needed this library has discontinued. I would like to invite anyone who would like to take up the maintainer role to contact me directly though email or leave a messsage in the issue list.
+
 # react-native-default-preference
+
 
 Use `SharedPreference` (Android) and `UserDefaults` (iOS) with React Native over a unified interface.
 All data are stored as String, in case more complex data structure is needed, serialize it (e.g. JSON)
