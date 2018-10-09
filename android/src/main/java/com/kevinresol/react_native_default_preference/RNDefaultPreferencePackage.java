@@ -1,5 +1,5 @@
 
-package com.reactlibrary;
+package com.kevinresol.react_native_default_preference;
 
 import java.util.Arrays;
 import java.util.Collections;

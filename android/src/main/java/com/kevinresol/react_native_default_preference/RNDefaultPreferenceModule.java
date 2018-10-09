@@ -1,5 +1,5 @@
 
-package com.reactlibrary;
+package com.kevinresol.react_native_default_preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
