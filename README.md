@@ -31,7 +31,7 @@ All data are stored as String, in case more complex data structure is needed, se
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainApplication.java`
-  - Add `import com.reactlibrary.RNDefaultPreferencePackage;` to the imports at the top of the file
+  - Add `import com.kevinresol.react_native_default_preference.RNDefaultPreferencePackage;` to the imports at the top of the file
   - Add `new RNDefaultPreferencePackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
