@@ -97,7 +97,7 @@ RCT_EXPORT_METHOD(getAll:(RCTPromiseResolveBlock)resolve
     NSArray *keys = [[[self getDefaultUser] dictionaryRepresentation] allKeys];
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for(NSString *key in keys) {
-        NSString *value = [[self getDefaultUser] stringForKey:key];
+        NSString *value = [[self getDefaultUser] valueForKey:key];
         result[key] = value == nil ? [NSNull null] : value;
     }
     resolve(result);
