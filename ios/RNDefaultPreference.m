@@ -43,7 +43,7 @@ RCT_EXPORT_METHOD(get:(NSString *)key
     resolve([[self getDefaultUser] stringForKey:key]);
 }
 
-RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
+RCT_EXPORT_METHOD(set:(NSString *)key value:(NSDictionary *)value
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
 {
