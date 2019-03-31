@@ -50,7 +50,30 @@ RCT_EXPORT_METHOD(getObject:(NSString *)key
     resolve([[self getDefaultUser] objectForKey:key]);
 }
 
+RCT_EXPORT_METHOD(getArray:(NSString *)key
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    resolve([[self getDefaultUser] arrayForKey:key]);
+}
+
 RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    [[self getDefaultUser] setObject:value forKey:key];
+    resolve([NSNull null]);
+}
+
+RCT_EXPORT_METHOD(setObject:(NSString *)key value:(NSString *)value
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    [[self getDefaultUser] setObject:value forKey:key];
+    resolve([NSNull null]);
+}
+
+RCT_EXPORT_METHOD(setArray:(NSString *)key value:(NSString *)value
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
 {
