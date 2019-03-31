@@ -20,6 +20,7 @@ NSString* defaultSuiteName = nil;
     }
 }
 
+
 RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(setName:(NSString *)name
@@ -65,7 +66,7 @@ RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
     resolve([NSNull null]);
 }
 
-RCT_EXPORT_METHOD(setObject:(NSString *)key value:(NSString *)value
+RCT_EXPORT_METHOD(setObject:(NSString *)key value:(NSDictionary *)value
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
 {
@@ -73,7 +74,7 @@ RCT_EXPORT_METHOD(setObject:(NSString *)key value:(NSString *)value
     resolve([NSNull null]);
 }
 
-RCT_EXPORT_METHOD(setArray:(NSString *)key value:(NSString *)value
+RCT_EXPORT_METHOD(setArray:(NSString *)key value:(NSArray *)value
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
 {
