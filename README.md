@@ -59,13 +59,13 @@ function get(key:String):Promise<String>;
 function set(key:String, value:String):Promise<Void>;
 
 /** Object and Arrays: 
-  iOS is native, Android uses JSON.parse(), since it only supports key/value pairs
+  iOS support is native, Android uses JSON.parse(), since it only supports key/value pairs
 **/
-function setObject():Promise<Void>;
-function getObject():Promise<Object>;
+function setObject(key: String, value: Object):Promise<Void>;
+function getObject(key:String):Promise<Object>;
 
-function setArray(): Promise<Void>;
-function getArray():Promise<string[]>;
+function setArray(key:String, value: string[]): Promise<Void>;
+function getArray(key:String):Promise<string[]>;
 
 function clear(key:String):Promise<Void>;
 function getMultiple(keys:Array<String>):Promise<Array<String>>;
