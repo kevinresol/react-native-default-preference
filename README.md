@@ -14,7 +14,11 @@ All data are stored as String, in case more complex data structure is needed, se
 
 `$ npm install react-native-default-preference --save`
 
-### Mostly automatic installation
+### React Native >= 0.60
+
+`$ cd ios && pod install`
+
+### React Native <= 0.59
 
 `$ react-native link react-native-default-preference`
 
