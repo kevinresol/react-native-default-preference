@@ -1,4 +1,4 @@
-
+[![npm version](https://badge.fury.io/js/react-native-default-preference.svg)](https://badge.fury.io/js/react-native-default-preference)
 
 **Looking for maintainer**
 
