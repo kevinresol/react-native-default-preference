@@ -10,13 +10,13 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.source         = { :git => 'https://github.com/kevinresol/react-native-default-preference.git' }
 
-  s.requires_arc   = true
-  s.platform       = :ios, '7.0'
-
+  s.platform     = :ios, "9.0"
+  s.ios.deployment_target = '9.0'
+  
   s.preserve_paths = 'README.md', 'package.json', 'index.js'
   s.source_files   = 'iOS/*.{h,m}'
+  s.source         = { :git => 'https://github.com/kevinresol/react-native-default-preference.git' }
 
   s.dependency 'React'
 end
