@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "9.0"
   s.ios.deployment_target = '9.0'
+  s.tvos.deployment_target = '9.2'
   
   s.preserve_paths = 'README.md', 'package.json', 'index.js'
   s.source_files   = 'iOS/*.{h,m}'
