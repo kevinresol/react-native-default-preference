@@ -7,7 +7,7 @@ declare module 'react-native-default-preference' {
         static get(key: string): Promise<string>;
         static set(key: string, value: string): Promise<void>;
         static clear(key: string): Promise<void>;
-        static getMultiple(keys: string[]): Promise<string[]>;
+        static getMultiple(keys: string[]): Promise<RNDefaultPreferenceKeys>;
         static setMultiple(data: RNDefaultPreferenceKeys): Promise<void>;
         static clearMultiple(keys: string[]): Promise<void>;
         static getAll(): Promise<RNDefaultPreferenceKeys>;
