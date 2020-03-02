@@ -3,8 +3,8 @@ import { NativeModules } from 'react-native';
 
 const { RNDefaultPreference } = NativeModules;
 
-const getArray = key => JSON.parse(RNDefaultPreference.getString(key));
-const getObject = key => JSON.parse(RNDefaultPreference.getString(key));
+const getArray = async key => JSON.parse(await RNDefaultPreference.getString(key));
+const getObject = async key => JSON.parse(await RNDefaultPreference.getString(key));
 
 export default {
   ...RNDefaultPreference,
