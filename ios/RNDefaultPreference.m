@@ -78,6 +78,13 @@ RCT_EXPORT_METHOD(getObject:(NSString *)key
     }
 }
 
+RCT_EXPORT_METHOD(getBoolean:(NSString *)key
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    resolve([[self getDefaultUser] boolForKey:key]);
+}
+
 RCT_EXPORT_METHOD(getMultiple:(NSArray *)keys
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)

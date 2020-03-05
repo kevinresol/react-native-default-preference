@@ -120,6 +120,11 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void get(String key, Promise promise) {
+    promise.resolve(getPreferences().getBoolean(key, null));
+  }
+
+  @ReactMethod
   public void clear(String key, Promise promise) {
     getEditor().remove(key).commit();
     promise.resolve(null);
