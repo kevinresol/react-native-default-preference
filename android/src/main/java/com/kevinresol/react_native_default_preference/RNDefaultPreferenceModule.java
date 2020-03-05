@@ -120,7 +120,7 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void get(String key, Promise promise) {
+  public void getBoolean(String key, Promise promise) {
     promise.resolve(getPreferences().getBoolean(key, null));
   }
 
