@@ -53,7 +53,7 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
         map.putDouble(key, (Double) value);
       } else if (value instanceof String) {
         map.putString(key, (String) value);
-      } else if (!value) {
+      } else if (value == null) {
         map.putNull(key);
       } else {
         map.putString(key, value.toString());
@@ -78,7 +78,7 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
         array.pushDouble((Double) value);
       } else if (value instanceof String) {
         array.pushString((String) value);
-      } else if (!value) {
+      } else if (value == null) {
         array.pushNull();
       } else {
         array.pushString(value.toString());
