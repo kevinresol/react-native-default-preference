@@ -108,7 +108,10 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     String value = getPreferences().getString(key, null);
     WritableMap object = null;
     try {
-      object = convertJsonToMap(new JSONObject(value));
+      JSONObject json = new JSONObject(value);
+      if (json != null) {
+        object = convertJsonToMap(json);
+      }
     } catch (JSONException error) {}
     promise.resolve(object);
   }
@@ -118,7 +121,10 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
     String value = getPreferences().getString(key, null);
     WritableArray array = null;
     try {
-      array = convertJsonToArray(new JSONArray(value));
+      JSONArray json = new JSONArray(value);
+      if (json != null) {
+        array = convertJsonToArray(json);
+      }
     } catch (JSONException error) {}
     promise.resolve(array);
   }
