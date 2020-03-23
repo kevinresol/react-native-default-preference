@@ -4,7 +4,7 @@
 
 
 Use `SharedPreferences` (Android) and `UserDefaults` (iOS) with React Native over a unified interface.
-All data is stored as a string. If you need to support more complex data structures (e.g. JSON), use serialization/deserialization.
+All data is stored as a string. If you need to support more complex data structures, use serialization/deserialization (e.g. JSON).
 
 ## Getting started
 
