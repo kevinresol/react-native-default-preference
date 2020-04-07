@@ -36,55 +36,61 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   }
 
   private static WritableMap convertJsonToMap(JSONObject jsonObject) throws JSONException {
-    WritableNativeMap map = new WritableNativeMap();
-    Iterator<String> iterator = jsonObject.keys();
-    while (iterator.hasNext()) {
-      String key = iterator.next();
-      Object value = jsonObject.get(key);
-      if (value instanceof JSONObject) {
-        map.putMap(key, convertJsonToMap((JSONObject) value));
-      } else if (value instanceof JSONArray) {
-        map.putArray(key, convertJsonToArray((JSONArray) value));
-      } else if (value instanceof Boolean) {
-        map.putBoolean(key, (Boolean) value);
-      } else if (value instanceof Integer) {
-        map.putInt(key, (Integer) value);
-      } else if (value instanceof Double) {
-        map.putDouble(key, (Double) value);
-      } else if (value instanceof String) {
-        map.putString(key, (String) value);
-      } else if (value == null) {
-        map.putNull(key);
-      } else {
-        map.putString(key, value.toString());
+    if (jsonObject != null) {
+      WritableNativeMap map = new WritableNativeMap();
+      Iterator<String> iterator = jsonObject.keys();
+      while (iterator.hasNext()) {
+        String key = iterator.next();
+        Object value = jsonObject.get(key);
+        if (value == null) {
+          map.putNull(key);
+        } else if (value instanceof JSONObject) {
+          map.putMap(key, convertJsonToMap((JSONObject) value));
+        } else if (value instanceof JSONArray) {
+          map.putArray(key, convertJsonToArray((JSONArray) value));
+        } else if (value instanceof Boolean) {
+          map.putBoolean(key, (Boolean) value);
+        } else if (value instanceof Integer) {
+          map.putInt(key, (Integer) value);
+        } else if (value instanceof Double) {
+          map.putDouble(key, (Double) value);
+        } else if (value instanceof String) {
+          map.putString(key, (String) value);
+        } else {
+          map.putString(key, value.toString());
+        }
       }
+      return map;
     }
-    return map;
+    return null;
   }
 
   private static WritableArray convertJsonToArray(JSONArray jsonArray) throws JSONException {
-    WritableNativeArray array = new WritableNativeArray();
-    for (int i = 0; i < jsonArray.length(); i++) {
-      Object value = jsonArray.get(i);
-      if (value instanceof JSONObject) {
-        array.pushMap(convertJsonToMap((JSONObject) value));
-      } else if (value instanceof JSONArray) {
-        array.pushArray(convertJsonToArray((JSONArray) value));
-      } else if (value instanceof Boolean) {
-        array.pushBoolean((Boolean) value);
-      } else if (value instanceof Integer) {
-        array.pushInt((Integer) value);
-      } else if (value instanceof Double) {
-        array.pushDouble((Double) value);
-      } else if (value instanceof String) {
-        array.pushString((String) value);
-      } else if (value == null) {
-        array.pushNull();
-      } else {
-        array.pushString(value.toString());
+    if (jsonArray != null) {
+      WritableNativeArray array = new WritableNativeArray();
+      for (int i = 0; i < jsonArray.length(); i++) {
+        Object value = jsonArray.get(i);
+        if (value == null) {
+          array.pushNull();
+        } else if (value instanceof JSONObject) {
+          array.pushMap(convertJsonToMap((JSONObject) value));
+        } else if (value instanceof JSONArray) {
+          array.pushArray(convertJsonToArray((JSONArray) value));
+        } else if (value instanceof Boolean) {
+          array.pushBoolean((Boolean) value);
+        } else if (value instanceof Integer) {
+          array.pushInt((Integer) value);
+        } else if (value instanceof Double) {
+          array.pushDouble((Double) value);
+        } else if (value instanceof String) {
+          array.pushString((String) value);
+        } else {
+          array.pushString(value.toString());
+        }
       }
+      return array;
     }
-    return array;
+    return null;
   }
 
   @Override
