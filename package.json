@@ -1,6 +1,6 @@
 {
   "name": "react-native-default-preference",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Use SharedPreference (Android) and UserDefaults (iOS) with React Native over a unified interface",
   "main": "index.js",
   "scripts": {
