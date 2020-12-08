@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.source_files   = 'iOS/*.{h,m}'
   s.source         = { :git => 'https://github.com/kevinresol/react-native-default-preference.git' }
 
-  s.dependency 'React'
+  s.dependency 'React-Core'
 end
