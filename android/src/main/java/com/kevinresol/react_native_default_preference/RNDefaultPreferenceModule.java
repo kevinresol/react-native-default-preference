@@ -35,7 +35,14 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void get(String key, Promise promise) {
-    promise.resolve(getPreferences().getString(key, null));
+      try {
+          promise.resolve(getPreferences().getString(key, null));
+      } catch(ClassCastException e){
+          if(!getPreferences().contains(key)) {
+              promise.resolve(null);
+          }
+          promise.resolve(getPreferences().getBoolean(key, false) ? "true" : "false");
+      }
   }
 
   @ReactMethod
