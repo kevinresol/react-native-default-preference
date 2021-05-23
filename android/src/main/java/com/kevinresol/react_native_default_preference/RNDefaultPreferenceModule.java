@@ -19,13 +19,14 @@ import com.facebook.react.bridge.WritableMap;
 import java.util.Map;
 
 public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
-  private String preferencesName = "react-native";
+  private String preferencesName;
 
   private final ReactApplicationContext reactContext;
 
   public RNDefaultPreferenceModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
+    this.preferencesName = reactContext.getPackageName() + "_preferences";
   }
 
   @Override
