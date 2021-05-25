@@ -53,19 +53,19 @@ DefaultPreference.set('my key', 'my value').then(function() {console.log('done')
 
 ## API
 
-```haxe
-function get(key:String):Promise<String>;
-function set(key:String, value:String):Promise<Void>;
-function clear(key:String):Promise<Void>;
-function getMultiple(keys:Array<String>):Promise<Array<String>>;
-function setMultiple(data:Object):Promise<Void>;
-function clearMultiple(keys:Array<String>):Promise<Void>;
-function getAll():Promise<Object>;
-function clearAll():Promise<Void>;
+```typescript
+function get(key: string): Promise<string | undefined>;
+function set(key: string, value: string): Promise<void>;
+function clear(key: string): Promise<void>;
+function getMultiple(keys: string[]): Promise<string[]>;
+function setMultiple(data: {[key: string]: string}): Promise<void>;
+function clearMultiple(keys: string[]): Promise<void>;
+function getAll(): Promise<{[key: string]: string}>;
+function clearAll(): Promise<void>;
 
 /** Gets and sets the current preferences file name (android) or user default suite name (ios) **/
-function getName():Promise<String>;
-function setName(name:String):Promise<Void>;
+function getName(): Promise<string>;
+function setName(name: string): Promise<void>;
 ```
 
 ## Cordova Native Storage Compatibility
