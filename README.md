@@ -54,7 +54,7 @@ DefaultPreference.set('my key', 'my value').then(function() {console.log('done')
 ## API
 
 ```typescript
-function get(key: string): Promise<string | undefined>;
+function get(key: string): Promise<string | undefined | null>;
 function set(key: string, value: string): Promise<void>;
 function clear(key: string): Promise<void>;
 function getMultiple(keys: string[]): Promise<string[]>;
