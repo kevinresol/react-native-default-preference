@@ -43,6 +43,18 @@ RCT_EXPORT_METHOD(get:(NSString *)key
     resolve([[self getDefaultUser] stringForKey:key]);
 }
 
+RCT_EXPORT_METHOD(getObject:(NSString *)key
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    id theObject = [[self getDefaultUser] objectForKey:key];
+    if ([theObject isKindOfClass:[NSData class]]) {
+        resolve([NSKeyedUnarchiver unarchiveObjectWithData:theObject]);
+    } else {
+        resolve(theObject);
+    }
+}
+
 RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)
