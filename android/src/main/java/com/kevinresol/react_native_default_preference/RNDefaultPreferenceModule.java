@@ -38,6 +38,12 @@ public class RNDefaultPreferenceModule extends ReactContextBaseJavaModule {
   public void get(String key, Promise promise) {
     promise.resolve(getPreferences().getString(key, null));
   }
+ 
+  @ReactMethod
+  public void getObject(String key, Promise promise) {
+
+    promise.resolve(new JSONObject(getPreferences().getString(key, null)));
+  }
 
   @ReactMethod
   public void set(String key, String value, Promise promise) {
