@@ -12,10 +12,8 @@ NSString* defaultSuiteName = nil;
 
 - (NSUserDefaults *) getDefaultUser{
     if(defaultSuiteName == nil){
-        NSLog(@"No prefer suite for userDefaults. Using standard one.");
         return [NSUserDefaults standardUserDefaults];
     } else {
-        NSLog(@"Using %@ suite for userDefaults", defaultSuiteName);
         return [[NSUserDefaults alloc] initWithSuiteName:defaultSuiteName];
     }
 }
